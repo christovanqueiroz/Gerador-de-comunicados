@@ -1,15 +1,20 @@
+// Data de hoje
 const dataDeHoje = document.getElementById('hoje');
+
+dataDeHoje.value = new Intl.DateTimeFormat('pt-BR').format(new Date());
+
+
+// Data do tratamento
+const dataDoTratamento = document.getElementById('tratamento');
 const date = new Date();
 
 let dia = date.getDate();
 let mês = date.getMonth();
 let ano = date.getFullYear();
 
-dataDeHoje.value = `${dia}/${mês+1}/${ano}`
-
-const dataDoTratamento = document.getElementById('tratamento');
 dataDoTratamento.value = `${dia+1}/${mês+1}/${ano}`
 
+// Nome do cliente de acordo com CNPJ
 let cnpjDoCliente;
 let url;
 let data;
