@@ -3,16 +3,19 @@ const dataDeHoje = document.getElementById('hoje');
 
 dataDeHoje.value = new Intl.DateTimeFormat('pt-BR').format(new Date());
 
-
 // Data do tratamento
 const dataDoTratamento = document.getElementById('tratamento');
 const date = new Date();
 
-let dia = date.getDate();
-let mês = date.getMonth();
+let dia = date.getDate() + 1;
+dia = dia.toString().padStart(2, '0');
+let mes = date.getMonth() + 1;
+mes = mes.toString().padStart(2, '0');
 let ano = date.getFullYear();
 
-dataDoTratamento.value = `${dia+1}/${mês+1}/${ano}`
+let proximoDia = dia + '/' + mes + '/' + ano
+
+dataDoTratamento.value = proximoDia
 
 // Nome do cliente de acordo com CNPJ
 let cnpjDoCliente;

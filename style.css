@@ -6,7 +6,8 @@
 }
 
 input,
-button {
+button,
+select {
     outline: none;
     border: none;
     background-color: #9a9da5;
