@@ -17,17 +17,29 @@ let proximoDia = dia + '/' + mes + '/' + ano
 
 dataDoTratamento.value = proximoDia
 
-// Nome do cliente de acordo com CNPJ
-let cnpjDoCliente;
+// CNPJ texto para apenas números
+function transformaEmNumero() {
+    let cnpjDoCliente = document.getElementById('cnpj');
+    cnpjDoCliente.value = cnpjDoCliente.value.replace(/\D/g, '')
+}
+
+// Nome do cliente de acordo com CNPJ digitado
 let url;
 let data;
 let cnpj;
+let nomeDoCliente;
 
 const consultaCNPJ = async() => {
-    cnpjDoCliente = document.getElementById('cnpj').value;
-    url = `https://publica.cnpj.ws/cnpj/${cnpjDoCliente}`;
+    cnpjDoClienteValor = document.getElementById('cnpj').value;
+    url = `https://publica.cnpj.ws/cnpj/${cnpjDoClienteValor}`;
     data = await fetch(url);
     cnpj = await data.json();
-    let nomeDoCliente = document.getElementById('cliente');
-    nomeDoCliente.value = cnpj.razao_social
+    nomeDoCliente = document.getElementById('cliente');
+    nomeDoCliente.value = cnpj.razao_social;
+}
+
+// Salvar dados do comunicado
+
+function salvarDados() {
+    console.log(dataDeHoje.value, dataDoTratamento.value)
 }

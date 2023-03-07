@@ -10,6 +10,10 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <header>
+        <h1>Gerador de comunicados fitossanitários</h1>
+    </header>
+
     <main>
         <section class="info">
             <article>
@@ -17,15 +21,15 @@
                     <legend>Data de hoje:</legend>
                     <input type="text" name="hoje" id="hoje">
                 </div>
-    
-                <div class="endereco"> <!-- Lista de acordo com os cadastrados -->
-                    <legend>Endereço do tratamento:</legend>
-                    <input type="text" name="endereço" id="endereço">
-                </div>
-    
+      
                 <div class="numero-comunicado">
                     <legend>Nº Comunicado:</legend>
                     <input type="number" name="comunicado" id="comunicado">
+                </div>
+
+                <div class="hora-tratamento">
+                    <legend>Horário de início:</legend>
+                    <input type="time" name="hora" id="hora">
                 </div>
     
                 <div class="data-tratamento"> <!-- Ja vem digitado com a data de amanhã -->
@@ -35,14 +39,14 @@
             </article>
 
             <article>
-                <div class="hora-tratamento">
-                    <legend>Horário de início:</legend>
-                    <input type="text" name="hora" id="hora">
+                <div class="endereco"> <!-- Lista de acordo com os cadastrados -->
+                    <legend>Endereço do tratamento:</legend>
+                    <input type="text" name="endereço" id="endereço">
                 </div>
-    
+
                 <div class="cnpj"> <!-- Integrar API -->
                     <legend>CNPJ do cliente:</legend>
-                    <input type="text" name="cnpj" id="cnpj" onblur="consultaCNPJ()">
+                    <input type="text" name="cnpj" id="cnpj" oninput="transformaEmNumero()" onchange="consultaCNPJ()">
                 </div>
     
                 <div class="nome-cliente"> <!-- Completa conforme CNPJ API -->
@@ -50,17 +54,29 @@
                     <input type="text" name="cliente" id="cliente">
                 </div>
     
-                <div class="quantidade">
-                    <legend>Quantidade de embalagens:</legend>
-                    <input type="text" name="quantidade" id="quantidade">
+                <div class="quantidade-e-tipo">
+                    <div>
+                        <legend>Quantidade</legend>
+                        <input type="number" name="quantidade" id="quantidade">    
+                    </div>
+
+                    <div>
+                        <legend>Tipo de embalagem:</legend>
+                        <select name="tipo" id="tipo">
+                            <option value="pallets">Pallets</option>
+                            <option value="caixas">Caixas</option>
+                            <option value="suportes">Suportes</option>
+                            <option value="madeiraserrada">m³ de madeira serrada para exportação</option>
+                        </select>    
+                    </div>
+
                 </div>
             </article>
-
         </section>
 
-        <section class="submit">
+        <section class="salvar">
             <div>
-                <button type="submit">Salvar comunicado</button>
+                <button type="submit" onclick="salvarDados()">Salvar comunicado</button>
             </div>
         </section>
     </main>
