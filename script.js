@@ -40,6 +40,13 @@ const consultaCNPJ = async() => {
 
 // Salvar dados do comunicado
 
+const numeroComunicado = document.getElementById('comunicado');
+const horarioTratamento = document.getElementById('hora');
+const endereçoTratamento = document.getElementById('endereço');
+const quantidade = document.getElementById('quantidade');
+const tipoDeEmbalagem = document.getElementById('tipo');
+
+
 function salvarDados() {
-    console.log(dataDeHoje.value, dataDoTratamento.value)
+    console.log(dataDeHoje.value, numeroComunicado.value, horarioTratamento.value, dataDoTratamento.value, endereçoTratamento.value, cnpjDoClienteValor, nomeDoCliente.value, quantidade.value, tipo.value)
 }
