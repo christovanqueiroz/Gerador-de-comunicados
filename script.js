@@ -50,3 +50,19 @@ const tipoDeEmbalagem = document.getElementById('tipo');
 function salvarDados() {
     console.log(dataDeHoje.value, numeroComunicado.value, horarioTratamento.value, dataDoTratamento.value, endereçoTratamento.value, cnpjDoClienteValor, nomeDoCliente.value, quantidade.value, tipo.value)
 }
+
+const fs = require('fs')
+const Docxtemplater = require('docxtemplater')
+
+const template = fs.readFileSync('./src/comunicado.docx', 'binary')
+const doc = new Docxtemplater();
+doc.loadZip(template);
+
+doc.setData({
+    input1: "value1",
+    input2: "value2",
+    input3: "value3"
+});
+
+const output = doc.render();
+fs.writeFileSync('./src/comunicadosalvo.docx', output, 'binary');
