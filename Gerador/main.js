@@ -139,9 +139,20 @@ async function fillForm() {
   const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(formPdfBytes)
+
+  const form = pdfDoc.getForm()
+
+  const localField = form.getTextField('Local')
+  const clienteField = form.getTextField('Cliente')
+  const cnpjField = form.getTextField('CNPJ')
+
+  localField.setText(endereçoTratamento.value)
+  clienteField.setText(nomeDoCliente.value)
+  cnpjField.setText(cnpjDoClienteValor)
+
   const pdfBytes = await pdfDoc.save()
 
-  download(pdfBytes, "pdf-lib_form_creation_example.pdf", "application/pdf");
+  download(pdfBytes, `${nomeDoCliente.value}.pdf`, "application/pdf");
 }
 
 window.fillForm = fillForm
