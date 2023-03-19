@@ -38,7 +38,9 @@ header {
   position: absolute;
   top: 0;
   font-size: .85em;
-  margin-top: 2em;
+  padding: 2em 1em 0 1em;
+  text-align: center;
+  height: 20%;
 }
 
 main {
@@ -46,7 +48,9 @@ main {
   flex-direction: column;
   width: 75%;
   align-items: center;
+  justify-content: center;
   gap: 1em;
+  height: 80%;
 }
 
 section {
@@ -110,6 +114,58 @@ article {
   background-color: #fff;
 }
 
+.salvar div button:hover {
+  background-color: rgb(127, 255, 185);
+  border: 1px solid #000;
+}
+
 .salvar div button:active {
-  background-color: #9a9da5;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+@media (max-width:768px) {
+  section {
+    flex-direction: column;
+  }
+
+  .info {
+    gap: .25em;
+    margin-top: 2em;
+    align-items: center;
+  }
+
+  .info article:first-child {
+    display: flex;
+    width: 100%;
+    gap: 1em;
+  }
+
+  .info article div {
+    margin: 0;
+  }
+
+  header {
+    height: 15%;
+  }
+
+  main {
+    height: 85%;
+  }
+}
+
+@media (max-width:540px) {
+  header {
+    font-size: .75em;
+  }
+}
+
+@media (max-width:457.5px) {
+  header {
+    height: 25%;
+  }
+
+  main {
+    height: 75%;
+  }
 }

@@ -2,7 +2,7 @@ import './style.css'
 
 document.querySelector('#app').innerHTML = `
   <header>
-      <h1>Gerador de comunicados fitossanitários</h1>
+      <h1>Gerador de comunicados fitossanitário</h1>
   </header>
 
   <main>
@@ -17,16 +17,16 @@ document.querySelector('#app').innerHTML = `
                   <legend>Nº Comunicado:</legend>
                   <input type="number" name="comunicado" id="comunicado">
               </div>
+              
+              <div class="data-tratamento"> <!-- Ja vem digitado com a data de amanhã -->
+                  <legend>Data do tratamento:</legend>
+                  <input type="text" name="tratamento" id="tratamento">
+              </div>
 
               <div class="hora-tratamento">
                   <legend>Horário de início:</legend>
                   <input type="time" name="hora" id="hora">
               </div>
-    
-              <div class="data-tratamento"> <!-- Ja vem digitado com a data de amanhã -->
-                  <legend>Data do tratamento:</legend>
-                  <input type="text" name="tratamento" id="tratamento">
-              </div>    
           </article>
 
           <article>
@@ -66,8 +66,7 @@ document.querySelector('#app').innerHTML = `
 
         <section class="salvar">
             <div>
-                <button type="submit" onclick="salvarDados()">Salvar comunicado</button>
-                <button type="submit" onclick="fillForm()">FillForm</button>
+                <button type="submit" onclick="fillForm()">Salvar comunicado</button>
             </div>
         </section>
     </main>
@@ -126,11 +125,11 @@ const endereçoTratamento = document.getElementById('endereço');
 const quantidade = document.getElementById('quantidade');
 const tipoDeEmbalagem = document.getElementById('tipo');
 
-function salvarDados() {
-    console.log(dataDeHoje.value, numeroComunicado.value, horarioTratamento.value, dataDoTratamento.value, endereçoTratamento.value, cnpjDoClienteValor, nomeDoCliente.value, quantidade.value, tipoDeEmbalagem.value)
-}
+const botao = document.querySelector('.salvar div button')
 
-window.salvarDados = salvarDados
+if(cnpjDoClienteValor = "") {
+    botao.style.backGroundColor = '#FF0000';
+}
 
 import { PDFDocument } from 'pdf-lib'
 
