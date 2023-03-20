@@ -57,7 +57,7 @@ document.querySelector('#app').innerHTML = `
                           <option value="pallets">Pallets</option>
                           <option value="caixas">Caixas</option>
                           <option value="suportes">Suportes</option>
-                          <option value="madeiraserrada">m³ de madeira serrada para exportação</option>
+                          <option value="m³ de madeira serrada para exportação">m³ de madeira serrada para exportação</option>
                       </select>    
                   </div>
                 </div>
@@ -66,7 +66,11 @@ document.querySelector('#app').innerHTML = `
 
         <section class="salvar">
             <div>
-                <button type="submit" onclick="fillForm()">Salvar comunicado</button>
+                <button type="submit" onclick="fillFormSW()">Salvar comunicado SW</button>
+            </div>
+            
+            <div>
+                <button type="submit" onclick="fillFormTQFMetro()">Salvar comunicado TQF Metro</button>
             </div>
         </section>
     </main>
@@ -133,25 +137,64 @@ if(cnpjDoClienteValor = "") {
 
 import { PDFDocument } from 'pdf-lib'
 
-async function fillForm() {
-  const formUrl = './src/comunicado.pdf'
+// Comunicado SW
+
+async function fillFormSW() {
+  const formUrl = './src/Comunicado SW.pdf'
   const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(formPdfBytes)
 
   const form = pdfDoc.getForm()
 
-  const localField = form.getTextField('Local')
-  const clienteField = form.getTextField('Cliente')
-  const cnpjField = form.getTextField('CNPJ')
+  const dataDeHojeField = form.getTextField('Data de hoje');
+  const comunicadoField = form.getTextField('Comunicado');
+  const dataDoTratamentoField = form.getTextField('Data do tratamento');
+  const horaField = form.getTextField('Hora');
+  const localField = form.getTextField('Local');
+  const cnpjField = form.getTextField('CNPJ');
+  const clienteField = form.getTextField('Cliente');
+  const quantidadeField = form.getTextField('Quantidade');
+  const embalagemField = form.getTextField('Embalagem');
 
-  localField.setText(endereçoTratamento.value)
-  clienteField.setText(nomeDoCliente.value)
-  cnpjField.setText(cnpjDoClienteValor)
+  dataDeHojeField.setText(dataDeHoje.value);
+  comunicadoField.setText(numeroComunicado.value);
+  dataDoTratamentoField.setText(dataDoTratamento.value);
+  horaField.setText(horarioTratamento.value);
+  localField.setText(endereçoTratamento.value);
+  cnpjField.setText(cnpjDoClienteValor);
+  clienteField.setText(nomeDoCliente.value);
+  quantidadeField.setText(quantidade.value);
+  embalagemField.setText(tipoDeEmbalagem.value);
 
   const pdfBytes = await pdfDoc.save()
 
   download(pdfBytes, `${nomeDoCliente.value}.pdf`, "application/pdf");
 }
 
-window.fillForm = fillForm
+window.fillFormSW = fillFormSW
+
+// Comunicado TQF Metro
+
+async function fillFormTQFMetro() {
+    const formUrl = './src/Comunicado TQF Metro.pdf'
+    const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer())
+  
+    const pdfDoc = await PDFDocument.load(formPdfBytes)
+  
+    const form = pdfDoc.getForm()
+  
+    const localField = form.getTextField('Local')
+    const clienteField = form.getTextField('Cliente')
+    const cnpjField = form.getTextField('CNPJ')
+  
+    localField.setText(endereçoTratamento.value)
+    clienteField.setText(nomeDoCliente.value)
+    cnpjField.setText(cnpjDoClienteValor)
+  
+    const pdfBytes = await pdfDoc.save()
+  
+    download(pdfBytes, `${nomeDoCliente.value}.pdf`, "application/pdf");
+  }
+  
+  window.fillFormTQFMetro = fillFormTQFMetro
