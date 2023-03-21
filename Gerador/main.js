@@ -169,7 +169,7 @@ async function fillFormSW() {
 
   const pdfBytes = await pdfDoc.save()
 
-  download(pdfBytes, `${nomeDoCliente.value}.pdf`, "application/pdf");
+  download(pdfBytes, `${nomeDoCliente.value} ${numeroComunicado.value}.pdf`, "application/pdf");
 }
 
 window.fillFormSW = fillFormSW

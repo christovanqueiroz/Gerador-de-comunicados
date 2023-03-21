@@ -102,6 +102,10 @@ article {
   width: 300px;
 }
 
+.salvar {
+  gap: 1em;
+}
+
 .salvar div button {
   width: 300px;
   height: 48px;
